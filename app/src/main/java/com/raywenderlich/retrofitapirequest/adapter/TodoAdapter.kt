@@ -36,7 +36,7 @@ class TodoAdapter : RecyclerView.Adapter<TodoAdapter.TodoViewHolder> () {
     override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
         holder.binding.apply {
             val crypto = cryptos[position]
-            tvUso.text = crypto.quote.USD.volume_24h.toString()
+            tvUso.text = crypto.quote.ARS.price.toString()
 
 
         }

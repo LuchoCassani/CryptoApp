@@ -31,7 +31,8 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launchWhenCreated {
             binding.progressBar.isVisible = true
             val response = try {
-                RetrofitInstance.API.getTodos()
+                RetrofitInstance.API.getUsdCryptos()
+                RetrofitInstance.API.getArsCryptos()
             } catch(e: IOException) {
                 Log.e(TAG, "IOException, you might not have internet connection")
                 binding.progressBar.isVisible = false
@@ -43,7 +44,7 @@ class MainActivity : AppCompatActivity() {
             }
             if(response.isSuccessful && response.body() != null) {
 
-                todoAdapter.todos = response.body()!!.data
+                todoAdapter.cryptos = response.body()!!.data
             } else {
                 Log.e(TAG, "Response not successful")
             }
