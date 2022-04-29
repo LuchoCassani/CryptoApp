@@ -1,6 +1,6 @@
 package com.raywenderlich.retrofitapirequest.data
 
-data class CryptoQuote(
+data class quote(
     val USD: USD,
     val ARS: ARS
 )

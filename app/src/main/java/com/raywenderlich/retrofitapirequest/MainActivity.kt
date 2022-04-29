@@ -45,6 +45,7 @@ class MainActivity : AppCompatActivity() {
             if(response.isSuccessful && response.body() != null) {
 
                 cryptoAdapter.cryptos = response.body()!!.data
+
             } else {
                 Log.e(TAG, "Response not successful")
             }

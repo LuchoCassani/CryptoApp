@@ -10,7 +10,7 @@ data class CryptoInformation(
     val name: String,
     val num_market_pairs: Int,
     val platform: Any,
-    val quote: CryptoQuote,
+    val quote: quote,
     val self_reported_circulating_supply: Any,
     val self_reported_market_cap: Any,
     val slug: String,

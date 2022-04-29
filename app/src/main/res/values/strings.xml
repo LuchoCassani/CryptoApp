@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Retrofit API Request</string>
+    <string name="price_usd">00.00</string>
+    <string name="price_ars">{}</string>
+    <string name="TwentyFourHour">24 hs vol change: </string>
+    <string name="TwentyFourHourPercentage">%</string>
+    <string name="ArsMarketCap">Market cap $</string>
+    <string name="Arsprice"><![CDATA[---> ARS Price]]></string>
 </resources>
