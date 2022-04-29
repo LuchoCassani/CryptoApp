@@ -33,8 +33,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setUpRecyclerViewARS()
-        setUpRecyclerViewUSD()
+        setUpRecyclerView()
 
         lifecycleScope.launchWhenCreated {
             binding.progressBar.isVisible = true
@@ -80,20 +79,22 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun setUpRecyclerViewARS() = binding.rvCryptos.apply {
+    private fun setUpRecyclerView() = binding.rvCryptos.apply {
         cryptoAdapterArs = CryptoAdapterARS()
-
-        adapter = cryptoAdapterArs
-
-        layoutManager = LinearLayoutManager(this@MainActivity)
-    }
-    private fun setUpRecyclerViewUSD() = binding.rvCryptos.apply {
         cryptoAdapter = CryptoAdapter()
         adapter = cryptoAdapter
-
+        adapter = cryptoAdapterArs
         layoutManager = LinearLayoutManager(this@MainActivity)
     }
 
+//private fun setUpRecyclerView() = binding.rvCryptos.apply {
+//        cryptoAdapterArs = CryptoAdapterARS()
+//        cryptoAdapter = CryptoAdapter()
+//        adapter = cryptoAdapter
+//        adapter = cryptoAdapterArs
+//
+//        layoutManager = LinearLayoutManager(this@MainActivity)
+//    }
 
 }
 
