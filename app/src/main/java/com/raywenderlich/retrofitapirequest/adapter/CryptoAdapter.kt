@@ -39,7 +39,7 @@ class CryptoAdapter : RecyclerView.Adapter<CryptoAdapter.CryptoViewHolder> () {
             val crypto = cryptos[position]
             cryptoName.text = crypto.name
             cryptoSymbol.text= crypto.symbol
-            ARSPrice.text = crypto.quote.USD.price.toString()
+            usaPrice.text = crypto.quote.USD.price.toString()
             //volumeChange24h.text = crypto.quote.ARS.volume_change_24h.toString()
             //marketCap.text = crypto.quote.ARS.market_cap.toString()
 
