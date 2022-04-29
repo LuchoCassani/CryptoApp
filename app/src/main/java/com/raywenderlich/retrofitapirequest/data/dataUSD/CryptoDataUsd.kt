@@ -1,6 +1,6 @@
 package com.raywenderlich.retrofitapirequest.data.dataUSD
 
-data class cryptoDataUsd(
+data class CryptoDataUsd(
     val data: List<Data>,
     val status: Status
 )

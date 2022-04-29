@@ -33,25 +33,15 @@
         app:layout_constraintBottom_toBottomOf="@+id/cryptoName"
         app:layout_constraintStart_toEndOf="@+id/cryptoSymbol" />
 
-    <TextView
-        android:id="@+id/usaPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="220dp"
-        android:layout_marginBottom="36dp"
-        app:layout_constraintBottom_toBottomOf="@+id/cryptoName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
 
     <TextView
         android:id="@+id/ARSPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginRight="16dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/cryptoName"
-        app:layout_constraintEnd_toStartOf="@+id/usaPrice"
         app:layout_constraintRight_toRightOf="parent" />
-
 
     <TextView
         android:id="@+id/volumeChange24hText"
@@ -92,6 +82,15 @@
         app:layout_constraintStart_toEndOf="@+id/marketCapText"
         app:layout_constraintTop_toBottomOf="@+id/cryptoName" />
 
+    <TextView
+        android:id="@+id/usdPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="204dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,33 +6,28 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.raywenderlich.retrofitapirequest.data.ArsData.DataArs
-import com.raywenderlich.retrofitapirequest.data.dataUSD.Data
 import com.raywenderlich.retrofitapirequest.databinding.ItemCryptoBinding
 
-
-class CryptoAdapter : RecyclerView.Adapter<CryptoAdapter.CryptoViewHolder>() {
-
+class CryptoAdapterARS : RecyclerView.Adapter<CryptoAdapterARS.CryptoViewHolder>() {
     inner class CryptoViewHolder(val binding: ItemCryptoBinding) :
         RecyclerView.ViewHolder(binding.root)
 
-    private val diffCallback = object : DiffUtil.ItemCallback<Data>() {
-        override fun areItemsTheSame(oldItem: Data, newItem: Data): Boolean {
+    private val diffCallback = object : DiffUtil.ItemCallback<DataArs>() {
+        override fun areItemsTheSame(oldItem: DataArs, newItem: DataArs): Boolean {
             return oldItem == newItem
         }
 
-        override fun areContentsTheSame(oldItem: Data, newItem: Data): Boolean {
+        override fun areContentsTheSame(oldItem: DataArs, newItem: DataArs): Boolean {
             return oldItem == newItem
         }
     }
-
     private val differ = AsyncListDiffer(this, diffCallback)
-
-
-    var cryptos: List<Data>
+    var cryptosArs: List<DataArs>
         get() = differ.currentList
         set(value) {
             differ.submitList(value)
         }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CryptoViewHolder {
         return CryptoViewHolder(
@@ -46,16 +41,16 @@ class CryptoAdapter : RecyclerView.Adapter<CryptoAdapter.CryptoViewHolder>() {
 
     override fun onBindViewHolder(holder: CryptoViewHolder, position: Int) {
         holder.binding.apply {
-            val crypto = cryptos[position]
-            usdPrice.text = crypto.quote.USD.price.toString()
-
-            //volumeChange24h.text = crypto.quote.USD.volume_change_24h.toString()
-            //marketCap.text = crypto.quote.USD.market_cap.toString()
-
+            val arsCryptos = cryptosArs[position]
+            cryptoName.text = arsCryptos.name
+            cryptoSymbol.text=arsCryptos.symbol
+            ARSPrice.text = arsCryptos.quote.ARS.price.toString()
+            volumeChange24h.text = arsCryptos.quote.ARS.volume_change_24h.toString()
+            marketCap.text = arsCryptos.quote.ARS.market_cap.toString()
         }
-
     }
 
-    override fun getItemCount() = cryptos.size
+    override fun getItemCount(): Int = cryptosArs.size
+
 
 }
