@@ -1,6 +1,6 @@
-package com.raywenderlich.retrofitapirequest.data
+package com.raywenderlich.retrofitapirequest.data.dataUSD
 
-data class ARS (
+data class USD(
     val fully_diluted_market_cap: Double,
     val last_updated: String,
     val market_cap: Double,

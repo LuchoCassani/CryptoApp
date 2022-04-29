@@ -31,8 +31,8 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launchWhenCreated {
             binding.progressBar.isVisible = true
             val response = try {
-                RetrofitInstance.API.getUsdCryptos()
-                RetrofitInstance.API.getArsCryptos()
+                RetrofitInstance.API.getCryptos()
+
             } catch(e: IOException) {
                 Log.e(TAG, "IOException, you might not have internet connection")
                 binding.progressBar.isVisible = false

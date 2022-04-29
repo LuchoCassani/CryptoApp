@@ -1,6 +1,6 @@
-package com.raywenderlich.retrofitapirequest.data
+package com.raywenderlich.retrofitapirequest.data.dataUSD
 
-data class CryptoInformation(
+data class Data(
     val circulating_supply: Double,
     val cmc_rank: Int,
     val date_added: String,
@@ -10,7 +10,7 @@ data class CryptoInformation(
     val name: String,
     val num_market_pairs: Int,
     val platform: Any,
-    val quote: quote,
+    val quote: Quote,
     val self_reported_circulating_supply: Any,
     val self_reported_market_cap: Any,
     val slug: String,
