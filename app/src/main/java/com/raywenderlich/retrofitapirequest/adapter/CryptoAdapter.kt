@@ -9,9 +9,9 @@ import com.raywenderlich.retrofitapirequest.data.CryptoInformation
 
 import com.raywenderlich.retrofitapirequest.databinding.ItemTodoBinding
 
-class TodoAdapter : RecyclerView.Adapter<TodoAdapter.TodoViewHolder> () {
+class CryptoAdapter : RecyclerView.Adapter<CryptoAdapter.CryptoViewHolder> () {
 
-    inner class TodoViewHolder(val binding: ItemTodoBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class CryptoViewHolder(val binding: ItemTodoBinding) : RecyclerView.ViewHolder(binding.root)
 
     private val diffCallback = object: DiffUtil.ItemCallback<CryptoInformation>(){
         override fun areItemsTheSame(oldItem: CryptoInformation, newItem: CryptoInformation): Boolean {
@@ -29,14 +29,18 @@ class TodoAdapter : RecyclerView.Adapter<TodoAdapter.TodoViewHolder> () {
     get() = differ.currentList
     set(value){differ.submitList(value)}
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoViewHolder {
-        return TodoViewHolder(ItemTodoBinding.inflate(LayoutInflater.from(parent.context),parent, false))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CryptoViewHolder {
+        return CryptoViewHolder(ItemTodoBinding.inflate(LayoutInflater.from(parent.context),parent, false))
     }
 
-    override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CryptoViewHolder, position: Int) {
         holder.binding.apply {
             val crypto = cryptos[position]
-            tvUso.text = crypto.quote.ARS.price.toString()
+            cryptoName.text = crypto.quote.USD.price.toString()
+            //usaPrice.text = crypto.name
+            //ARSPrice.text = crypto.last_updated
+            //last24hsChange.text = crypto.quote.ARS.volume_change_24h.toString()
+            //ARSPrice.text = crypto.quote.ARS.market_cap.toString()
 
 
         }
