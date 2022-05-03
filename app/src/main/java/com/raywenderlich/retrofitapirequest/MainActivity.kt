@@ -1,7 +1,8 @@
 package com.raywenderlich.retrofitapirequest
 
-import android.annotation.SuppressLint
+
 import android.content.ContentValues.TAG
+
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -9,8 +10,7 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.raywenderlich.retrofitapirequest.adapter.CryptoAdapter
-import com.raywenderlich.retrofitapirequest.adapter.CryptoAdapterARS
-import com.raywenderlich.retrofitapirequest.data.ArsData.DataArs
+import com.raywenderlich.retrofitapirequest.adapter.CryptoAdapterArs
 import com.raywenderlich.retrofitapirequest.databinding.ActivityMainBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -18,6 +18,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 import java.io.IOException
+import androidx.recyclerview.widget.DividerItemDecoration as DividerItemDecoration1
 
 
 class MainActivity : AppCompatActivity() {
@@ -25,14 +26,16 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     private lateinit var cryptoAdapter: CryptoAdapter
-    private lateinit var cryptoAdapterArs: CryptoAdapterARS
+    private lateinit var cryptoAdapterArs: CryptoAdapterArs
 
 
-    @SuppressLint("NotifyDataSetChanged")
+
+    //@SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setUpRecyclerViewArs()
         setUpRecyclerView()
 
         lifecycleScope.launchWhenCreated {
@@ -52,12 +55,13 @@ class MainActivity : AppCompatActivity() {
                         if (firstResponse.isSuccessful && secondResponse.isSuccessful) {
 
                             cryptoAdapter.cryptos = firstResponse.body()!!.data
-                            cryptoAdapterArs.cryptosArs = secondResponse.body()!!.data
+                            cryptoAdapterArs.cryptoArs = secondResponse.body()!!.data
 
-                            Log.e("usd",firstResponse.body()!!.data.toString())
-                            Log.e("usd",secondResponse.body()!!.data.toString())
-                            val consol = cryptoAdapterArs.cryptosArs.size
-                            Log.e("precio",consol.toString())
+                            Log.e("usd", firstResponse.body()!!.data.toString())
+                            Log.e("ars", secondResponse.body()!!.data.toString())
+
+
+
                         } else {
                             Log.e(TAG, "Response not successful")
                         }
@@ -79,22 +83,20 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+
     private fun setUpRecyclerView() = binding.rvCryptos.apply {
-        cryptoAdapterArs = CryptoAdapterARS()
         cryptoAdapter = CryptoAdapter()
         adapter = cryptoAdapter
+        layoutManager = LinearLayoutManager(this@MainActivity)
+
+    }
+
+    private fun setUpRecyclerViewArs() = binding.rvCryptos.apply {
+        cryptoAdapterArs = CryptoAdapterArs()
         adapter = cryptoAdapterArs
         layoutManager = LinearLayoutManager(this@MainActivity)
     }
 
-//private fun setUpRecyclerView() = binding.rvCryptos.apply {
-//        cryptoAdapterArs = CryptoAdapterARS()
-//        cryptoAdapter = CryptoAdapter()
-//        adapter = cryptoAdapter
-//        adapter = cryptoAdapterArs
-//
-//        layoutManager = LinearLayoutManager(this@MainActivity)
-//    }
 
 }
 

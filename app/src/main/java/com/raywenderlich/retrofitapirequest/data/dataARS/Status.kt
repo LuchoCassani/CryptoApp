@@ -1,4 +1,4 @@
-package com.raywenderlich.retrofitapirequest.data.ArsData
+package com.raywenderlich.retrofitapirequest.data.dataARS
 
 data class Status(
     val credit_count: Int,

@@ -1,4 +1,4 @@
-package com.raywenderlich.retrofitapirequest.data.ArsData
+package com.raywenderlich.retrofitapirequest.data.dataARS
 
 data class ARS(
     val fully_diluted_market_cap: Double,

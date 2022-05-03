@@ -1,6 +1,6 @@
-package com.raywenderlich.retrofitapirequest.data.ArsData
+package com.raywenderlich.retrofitapirequest.data.dataARS
 
-data class DataArs(
+data class Data(
     val circulating_supply: Double,
     val cmc_rank: Int,
     val date_added: String,

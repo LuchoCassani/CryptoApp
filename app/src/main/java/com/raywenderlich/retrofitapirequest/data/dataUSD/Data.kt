@@ -1,5 +1,7 @@
 package com.raywenderlich.retrofitapirequest.data.dataUSD
 
+import com.raywenderlich.retrofitapirequest.data.dataUSD.Quote
+
 data class Data(
     val circulating_supply: Double,
     val cmc_rank: Int,

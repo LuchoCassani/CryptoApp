@@ -1,7 +1,8 @@
 package com.raywenderlich.retrofitapirequest
 
-import com.raywenderlich.retrofitapirequest.data.ArsData.CryptoDataArs
-import com.raywenderlich.retrofitapirequest.data.dataUSD.CryptoDataUsd
+
+import com.raywenderlich.retrofitapirequest.data.dataARS.CryptoDataArs
+import com.raywenderlich.retrofitapirequest.data.dataUSD.CryptoData
 import retrofit2.Response
 import retrofit2.http.GET
 
@@ -11,7 +12,7 @@ interface CryptoAPI {
     //first call USD currency
 
     @GET ("v1/cryptocurrency/listings/latest?limit=10")
-    suspend fun getCryptos(): Response<CryptoDataUsd>
+    suspend fun getCryptos(): Response<CryptoData>
 
     @GET("v1/cryptocurrency/listings/latest?limit=10&convert=ARS")
     suspend fun getCryptosArs():Response<CryptoDataArs>

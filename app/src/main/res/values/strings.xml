@@ -5,5 +5,5 @@
     <string name="TwentyFourHour">24 hs vol change: </string>
     <string name="TwentyFourHourPercentage">%</string>
     <string name="ArsMarketCap">Market cap $</string>
-    <string name="Arsprice"><![CDATA[---> ARS Price]]></string>
+    <string name="Arsprice"><![CDATA[---> USD Price]]></string>
 </resources>
