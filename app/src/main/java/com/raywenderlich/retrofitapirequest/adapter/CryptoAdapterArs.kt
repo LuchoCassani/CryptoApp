@@ -2,6 +2,7 @@ package com.raywenderlich.retrofitapirequest.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -9,6 +10,8 @@ import com.raywenderlich.retrofitapirequest.data.dataARS.Data
 import com.raywenderlich.retrofitapirequest.databinding.ItemCryptoArsBinding
 
 class CryptoAdapterArs : RecyclerView.Adapter<CryptoAdapterArs.CryptoArsViewHolder>() {
+
+
 
 
     inner class CryptoArsViewHolder(val binding: ItemCryptoArsBinding) :
@@ -44,6 +47,12 @@ class CryptoAdapterArs : RecyclerView.Adapter<CryptoAdapterArs.CryptoArsViewHold
     override fun onBindViewHolder(holder: CryptoArsViewHolder, position: Int) {
         holder.binding.apply {
             val arsCrypto = cryptoArs[position]
+
+            cryptoName.text = arsCrypto.name
+            cryptoSymbol.text=arsCrypto.symbol
+            arsPrice.text = arsCrypto.quote.ARS.price.toString()
+            volumeChange24h.text = arsCrypto.quote.ARS.volume_change_24h.toString()
+            marketCap.text = arsCrypto.quote.ARS.market_cap.toString()
 
 
         }
