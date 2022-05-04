@@ -55,6 +55,7 @@ class CryptoAdapterArs : RecyclerView.Adapter<CryptoAdapterArs.CryptoArsViewHold
             marketCap.text = arsCrypto.quote.ARS.market_cap.toString()
 
 
+
         }
     }
 
