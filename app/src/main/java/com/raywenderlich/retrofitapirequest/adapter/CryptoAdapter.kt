@@ -1,6 +1,7 @@
 package com.raywenderlich.retrofitapirequest.adapter
 
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 
@@ -62,8 +63,14 @@ open class CryptoAdapter : RecyclerView.Adapter<CryptoAdapter.CryptoViewHolder>(
             volumeChange24h.text = crypto.quote.USD.volume_change_24h.toString()
             marketCap.text = crypto.quote.USD.market_cap.toString()
 
+            if (volumeChange24h.toString() > "0") {
+                volumeChange24h.setTextColor(Color.RED)
 
+            } else {
+                volumeChange24h.setTextColor(Color.GREEN)
+            }
         }
+
 
 
     }

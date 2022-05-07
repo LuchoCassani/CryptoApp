@@ -36,11 +36,11 @@ class CryptoAdapterArs : RecyclerView.Adapter<CryptoAdapterArs.CryptoArsViewHold
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CryptoArsViewHolder {
         return CryptoArsViewHolder(
-            ItemCryptoArsBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
+                ItemCryptoArsBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
         )
     }
 
@@ -53,7 +53,6 @@ class CryptoAdapterArs : RecyclerView.Adapter<CryptoAdapterArs.CryptoArsViewHold
             arsPrice.text = arsCrypto.quote.ARS.price.toString()
             volumeChange24h.text = arsCrypto.quote.ARS.volume_change_24h.toString()
             marketCap.text = arsCrypto.quote.ARS.market_cap.toString()
-
 
 
         }

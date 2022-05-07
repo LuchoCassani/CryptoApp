@@ -6,7 +6,8 @@ import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
-import android.widget.Toast
+import android.widget.TextView
+
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -41,6 +42,9 @@ class MainActivity : AppCompatActivity() {
         setUpRecyclerViewArs()
         setUpRecyclerView()
 
+        val arsButton: Button = binding.button
+        arsButton.setOnClickListener { arsPrice() }
+
 
         lifecycleScope.launchWhenCreated {
             binding.progressBar.isVisible = true
@@ -65,7 +69,7 @@ class MainActivity : AppCompatActivity() {
                             Log.e("ars", secondResponse.body()!!.data.toString())
 
                             var arsData: List<Data> = cryptoAdapterArs.cryptoArs
-                            for (i in arsData){
+                            for (i in arsData) {
                                 println(i.name)
                                 println(i.quote.ARS.price)
                                 println(i.quote.ARS.market_cap)
@@ -93,11 +97,32 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    private fun arsPrice() {
+
+        val changePrice: TextView = findViewById(R.id.usdPrice)
+        val changeVolume: TextView = findViewById(R.id.volumeChange24h)
+        val changeMarketCap: TextView = findViewById(R.id.marketCap)
+        val changeName: TextView = findViewById(R.id.coinDivider)
+        val arsData: List<Data> = cryptoAdapterArs.cryptoArs
+
+        for (i in arsData) {
+            changePrice.text = i.quote.ARS.price.toString()
+            changeVolume.text = i.quote.ARS.volume_change_24h.toString()
+            changeMarketCap.text = i.quote.ARS.market_cap.toString()
+            changeName.text = "Ars Price"
+            println(i)
+        }
+
+
+    }
+
+
 
     private fun setUpRecyclerView() = binding.rvCryptos.apply {
         cryptoAdapter = CryptoAdapter()
         adapter = cryptoAdapter
         layoutManager = LinearLayoutManager(this@MainActivity)
+
 
     }
 

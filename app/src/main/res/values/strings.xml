@@ -6,4 +6,5 @@
     <string name="TwentyFourHourPercentage">%</string>
     <string name="ArsMarketCap">Market cap $</string>
     <string name="Arsprice"><![CDATA[---> USD Price]]></string>
+    <string name="change_to_ars">Change to Ars</string>
 </resources>
