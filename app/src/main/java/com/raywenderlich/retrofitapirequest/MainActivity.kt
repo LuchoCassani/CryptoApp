@@ -24,6 +24,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 import java.io.IOException
+import java.math.RoundingMode
 
 
 class MainActivity : AppCompatActivity() {
@@ -71,9 +72,12 @@ class MainActivity : AppCompatActivity() {
                             var arsData: List<Data> = cryptoAdapterArs.cryptoArs
                             for (i in arsData) {
                                 println(i.name)
-                                println(i.quote.ARS.price)
-                                println(i.quote.ARS.market_cap)
-                                println(i.quote.ARS.volume_change_24h)
+                                println(i.quote.ARS.price.toBigDecimal().setScale(6, RoundingMode.UP).toDouble()
+                                    .toString())
+                                println(i.quote.ARS.market_cap.toBigDecimal().setScale(5, RoundingMode.UP).toDouble()
+                                    .toString())
+                                println(i.quote.ARS.volume_change_24h.toBigDecimal().setScale(4, RoundingMode.UP).toDouble()
+                                    .toString())
                             }
 
                         } else {
@@ -106,9 +110,12 @@ class MainActivity : AppCompatActivity() {
         val arsData: List<Data> = cryptoAdapterArs.cryptoArs
 
         for (i in arsData) {
-            changePrice.text = i.quote.ARS.price.toString()
-            changeVolume.text = i.quote.ARS.volume_change_24h.toString()
-            changeMarketCap.text = i.quote.ARS.market_cap.toString()
+            changePrice.text = i.quote.ARS.price.toString().toBigDecimal().setScale(3, RoundingMode.UP).toDouble()
+                .toString()
+            changeVolume.text = i.quote.ARS.volume_change_24h.toString().toBigDecimal().setScale(3, RoundingMode.UP).toDouble()
+                .toString()
+            changeMarketCap.text = i.quote.ARS.market_cap.toString().toBigDecimal().setScale(5, RoundingMode.UP).toDouble()
+                .toString()
             changeName.text = "Ars Price"
             println(i)
         }

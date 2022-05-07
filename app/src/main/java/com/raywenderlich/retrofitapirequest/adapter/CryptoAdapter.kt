@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.raywenderlich.retrofitapirequest.data.dataUSD.Data
 
 import com.raywenderlich.retrofitapirequest.databinding.ItemCryptoBinding
+import java.math.RoundingMode
 
 
 open class CryptoAdapter : RecyclerView.Adapter<CryptoAdapter.CryptoViewHolder>() {
@@ -59,9 +60,13 @@ open class CryptoAdapter : RecyclerView.Adapter<CryptoAdapter.CryptoViewHolder>(
             val crypto = cryptos[position]
             cryptoName.text = crypto.name
             cryptoSymbol.text = crypto.symbol
-            usdPrice.text = crypto.quote.USD.price.toString()
-            volumeChange24h.text = crypto.quote.USD.volume_change_24h.toString()
-            marketCap.text = crypto.quote.USD.market_cap.toString()
+            usdPrice.text =
+                crypto.quote.USD.price.toString().toBigDecimal().setScale(3, RoundingMode.UP).toDouble()
+                    .toString()
+            volumeChange24h.text = crypto.quote.USD.volume_change_24h.toString().toBigDecimal().setScale(3, RoundingMode.UP).toDouble()
+                .toString()
+            marketCap.text = crypto.quote.USD.market_cap.toString().toBigDecimal().setScale(5, RoundingMode.UP).toDouble()
+                .toString()
 
             if (volumeChange24h.toString() > "0") {
                 volumeChange24h.setTextColor(Color.RED)
