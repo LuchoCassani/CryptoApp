@@ -11,7 +11,20 @@ import org.junit.Assert.*
  */
 class ExampleUnitTest {
     @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+    fun testSetearUnidad() {
+        val number = 12000000.0
+        assertEquals("12 millones", setearUnidad(number))
+    }
+    @Test
+    fun testSetearUnidadDos() {
+        val number = 12000.0
+        assertEquals("12 mil", setearUnidad(number))
+    }
+
+    fun setearUnidad(value:Double):String {
+        //TODO mostrar unidad, si es millones mostrar millones, si es billones mostrar billones
+
+        return "12 millones"
+
     }
 }

@@ -1,6 +1,6 @@
-package com.raywenderlich.retrofitapirequest.data.dataUSD
+package com.raywenderlich.retrofitapirequest.data
 
-data class USD(
+data class CryptoDataValue(
     val fully_diluted_market_cap: Double,
     val last_updated: String,
     val market_cap: Double,

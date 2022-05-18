@@ -4,15 +4,13 @@ package com.raywenderlich.retrofitapirequest.adapter
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
-
-
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.raywenderlich.retrofitapirequest.data.dataUSD.Data
-
+import com.raywenderlich.retrofitapirequest.data.Data
 import com.raywenderlich.retrofitapirequest.databinding.ItemCryptoBinding
 import java.math.RoundingMode
+import java.text.DecimalFormat
 
 
 open class CryptoAdapter : RecyclerView.Adapter<CryptoAdapter.CryptoViewHolder>() {
@@ -57,33 +55,40 @@ open class CryptoAdapter : RecyclerView.Adapter<CryptoAdapter.CryptoViewHolder>(
 
     override fun onBindViewHolder(holder: CryptoViewHolder, position: Int) {
         holder.binding.apply {
+
             val crypto = cryptos[position]
             cryptoName.text = crypto.name
             cryptoSymbol.text = crypto.symbol
-            usdPrice.text =
-                crypto.quote.USD.price.toString().toBigDecimal().setScale(3, RoundingMode.UP).toDouble()
-                    .toString()
-            volumeChange24h.text = crypto.quote.USD.volume_change_24h.toString().toBigDecimal().setScale(3, RoundingMode.UP).toDouble()
-                .toString()
-            marketCap.text = crypto.quote.USD.market_cap.toString().toBigDecimal().setScale(5, RoundingMode.UP).toDouble()
-                .toString()
+            usdPrice.text = crypto.quote.USD?.let { unitSetting(it.price) }
+            volumeChange24h.text = crypto.quote.USD?.let { unitSetting(it.volume_change_24h) + "%" }
+            marketCap.text = crypto.quote.USD?.let { unitSetting(it.market_cap) }
 
-            if (volumeChange24h.toString() > "0") {
+            if (crypto.quote.USD?.volume_change_24h.toString() < "0") {
                 volumeChange24h.setTextColor(Color.RED)
-
             } else {
                 volumeChange24h.setTextColor(Color.GREEN)
             }
+
         }
 
+    }
 
+    private fun unitSetting(value: Double): String {
+        val decimalFormat = DecimalFormat("#,###.##")
+        decimalFormat.roundingMode = RoundingMode.CEILING
+        return (decimalFormat.format(value))
 
     }
 
 
     override fun getItemCount() = cryptos.size
 
+
 }
+
+
+
+
 
 
 

@@ -44,6 +44,14 @@
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/cryptoName"
         app:layout_constraintRight_toRightOf="parent" />
+    <TextView
+        android:id="@+id/arsPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/usdPrice"
+        app:layout_constraintRight_toRightOf="@+id/usdPrice" />
 
     <TextView
         android:id="@+id/volumeChange24hText"

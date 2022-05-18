@@ -6,7 +6,6 @@ import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
-import android.widget.TextView
 
 
 import androidx.appcompat.app.AppCompatActivity
@@ -14,8 +13,7 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.raywenderlich.retrofitapirequest.adapter.CryptoAdapter
-import com.raywenderlich.retrofitapirequest.adapter.CryptoAdapterArs
-import com.raywenderlich.retrofitapirequest.data.dataARS.Data
+import com.raywenderlich.retrofitapirequest.data.Data
 
 import com.raywenderlich.retrofitapirequest.databinding.ActivityMainBinding
 import kotlinx.coroutines.CoroutineScope
@@ -24,7 +22,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 import java.io.IOException
-import java.math.RoundingMode
 
 
 class MainActivity : AppCompatActivity() {
@@ -32,7 +29,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     private lateinit var cryptoAdapter: CryptoAdapter
-    private lateinit var cryptoAdapterArs: CryptoAdapterArs
+
 
 
     //@SuppressLint("NotifyDataSetChanged")
@@ -40,11 +37,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setUpRecyclerViewArs()
+
         setUpRecyclerView()
 
-        val arsButton: Button = binding.button
-        arsButton.setOnClickListener { arsPrice() }
+
+
 
 
         lifecycleScope.launchWhenCreated {
@@ -54,22 +51,24 @@ class MainActivity : AppCompatActivity() {
                     val firstResponse =
                         withContext(Dispatchers.Default) {
                             RetrofitInstance.API.getCryptos()
+
+
                         }
                     val secondResponse =
                         withContext(Dispatchers.Default) {
-                            RetrofitInstance.API.getCryptosArs()
-
+                             RetrofitInstance.API.getCryptosArs("ARS")
                         }
                     runOnUiThread {
                         if (firstResponse.isSuccessful && secondResponse.isSuccessful) {
 
-                            cryptoAdapter.cryptos = firstResponse.body()!!.data
-                            cryptoAdapterArs.cryptoArs = secondResponse.body()!!.data
+                            cryptoAdapter.cryptos = firstResponse.body()?.data ?: listOf()
+                            //cryptoAdapter.cryptos = secondResponse.body()?.data?: listOf()
 
-                            Log.e("usd", firstResponse.body()!!.data.toString())
-                            Log.e("ars", secondResponse.body()!!.data.toString())
 
-                            var arsData: List<Data> = cryptoAdapterArs.cryptoArs
+                            Log.e("prueba de monedas", "USD ${firstResponse.body()!!}")
+                            Log.e("prueba de monedas","ARS ${secondResponse.body()!!} ")
+
+                            /*var arsData: List<Data> = cryptoAdapter.cryptos
                             for (i in arsData) {
                                 println(i.name)
                                 println(i.quote.ARS.price.toBigDecimal().setScale(6, RoundingMode.UP).toDouble()
@@ -78,7 +77,7 @@ class MainActivity : AppCompatActivity() {
                                     .toString())
                                 println(i.quote.ARS.volume_change_24h.toBigDecimal().setScale(4, RoundingMode.UP).toDouble()
                                     .toString())
-                            }
+                            }*/
 
                         } else {
                             Log.e(TAG, "Response not successful")
@@ -101,8 +100,8 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun arsPrice() {
-
+    /*private fun arsPrice() {
+        binding.rvCryptos.adapter.
         val changePrice: TextView = findViewById(R.id.usdPrice)
         val changeVolume: TextView = findViewById(R.id.volumeChange24h)
         val changeMarketCap: TextView = findViewById(R.id.marketCap)
@@ -121,7 +120,7 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-    }
+    }*/
 
 
 
@@ -133,11 +132,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun setUpRecyclerViewArs() = binding.rvCryptos.apply {
-        cryptoAdapterArs = CryptoAdapterArs()
-        adapter = cryptoAdapterArs
-        layoutManager = LinearLayoutManager(this@MainActivity)
-    }
+
 
 
 }
